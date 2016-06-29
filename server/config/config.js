@@ -1,9 +1,11 @@
+var mongohost = process.env.MONGOHOST || 'localhost';
+
 module.exports = {
     development: {
-        url: 'http://localhost:8080/',
+        url: 'http://0.0.0.0:8080/',
         ip: "0.0.0.0",
         port: 8080,
-        db: 'mongodb://localhost:27017/widestage_development',
+        db: 'mongodb://' + mongohost + ':27017/widestage_development',
         app: {
             name: 'WideStage',
             contactEmail: '',
@@ -33,10 +35,10 @@ module.exports = {
         }
     },
     production: {
-        url: 'http://localhost',
+        url: 'http://0.0.0.0',
         ip: "0.0.0.0",
         port: 80,
-        db: 'mongodb://localhost:27017/widestage',
+        db: 'mongodb://' + mongohost + ':27017/widestage',
         app: {
             name: 'WideStage',
             contactEmail: '',
@@ -66,7 +68,7 @@ module.exports = {
         }
     },
     local: {
-        url: 'http://localhost:8081/',
+        url: 'http://0.0.0.0:8081/',
         ip:  "127.0.0.1",
         port: 8081,
         db: 'localhost:27017/widestage_development',
