@@ -6,6 +6,8 @@ services:
     hostname: mongo
     ports: 
       - "27017:27017"
+    links:
+      - mysql
   widestage:
     build: .
     image: jonbrouse/widestage
@@ -16,6 +18,7 @@ services:
       - ./server/config/config.js:/srv/app/server/config/config.js
     links:
       - mongo
+      - mysql
     environment:
       - IP=0.0.0.0
       - MONGOHOST=mongo
@@ -24,3 +27,11 @@ services:
       - "80:80"
       - "8080:8080"
       - "8081:8081"
+  mysql:
+    image: mysql/mysql-server
+    hostname: mysql
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+    ports:
+      - "3306:3306"
